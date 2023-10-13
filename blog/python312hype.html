@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<style type="text/css">
+	body {
+		background-color: black;
+	}
+	h1, h2, h3, h4, h5 {
+		color: white;
+	}
+	p, li {
+		color: white;
+		font-size: 25px;
+	}
+</style>
+<html>
+<head>
+	<title>AH's Blog</title>
+</head>
+<body>
+<h1>Is Python 3.12 Worth The Hype?</h1>
+<h3>13 October 2023</h2>
+<br><br>
+<p>Python 3.12 is coming out with type aliases, a override decorator, performance improvements, new builtins and nested f-strings. Wow a lot of features to cover which are worth the hype?</p>
+<br><br>
+<br><br>
+<br><br>
+<p><strong>Type Aliases</strong></p>
+<p>Yes you can already make these but now there is a special syntax for them with the type keyword.</p>
+<p>type Point = tuple[float, float]</p>
+<p>You can see that we are making a point type which is a tuple of two floats which is equivalent to this.</p>
+<p>
+  annotation-def VALUE_OF_Point():
+    return tuple[float, float]
+  Point = typing.TypeAliasType("Point", VALUE_OF_Point())
+</p>
+<p>Annotation scopes are like functions but with a few small differences. So you might be asking how is this any different then just doing this.</p>
+<p>Point = tuple[float, float]</p>
+<p>Well that is a typing.GenericAlias while the type statement makes a typing.TypeAliasType, what the hell is the difference between those two. Well to answer your question, this will make type checking with mypy for example easier.</p>
+<p>Mypy will treat Point the same as tuple[float, float] literally so passing a tuple of two floats will be treated as Point and passing an instance of Point will also work.</p>
+<br><br>
+<br><br>
+<br><br>
+<p><strong>Override Decorator</strong></p>
+<p>Let's say you have a Base class and you want to create an Extended class from the Base class, you want to overwrite the name function to return "Extended" instead of "Base".</p>
+<p>You misspelled name to nam and the previous function has not been overwrited, in a large codebase you might not notice this and when testing through a function that uses another function that uses a third function that uses that class you will be pretty confused.</p>
+<p>So you can use the override decorator which will inform you if your overwriting a existing function or not.</p>
+<p>
+  @override
+  def name(self):
+    return "Extended"
+</p>
+<p>Works! How about we misspell it though.</p>
+<p>
+  @override
+  def nam(self):
+    return "Extended"
+</p>
+<p>Oh no! It throws an error so we can catch and debug back to this specific function instead of being confused by a logical bug.</p>
+<br><br>
+<br><br>
+<br><br>
+<p><strong>Performance Improvements</strong></p>
+<p>Python 3.12 is much more performant then Python 3.11.</p>
+<p>I cannot go in-depth here but this <a href="https://www.infoworld.com/article/3694512/python-312-faster-leaner-more-future-proof.html">this article</a> is great to learn more.</p>
+<p>Seeing a dynamically-typed language being faster says a lot about the future of programming.</p>
+<br><br>
+<br><br>
+<br><br>
+<p><strong>Nested f-strings</strong></p>
+<p>Before you would need to do this crazy stuff to nest f-strings.</p>
+<p>f"""{f'''{f"{f''}"}'''}"""</p>
+<p>Now you can just do this.</p>
+<p>f"{f"{f"{f""}"}"}"</p>
+<br><br>
+<br><br>
+<br><br>
+<p>So indeed yes, Python 3.12 is worth the hype and future Python versions will bring even more improvements such as Python 3.14 could be faster then C++ but that's a story for another time.</p>
+</body>
+</html>
